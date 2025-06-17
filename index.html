@@ -5,7 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CampusMart</title>
-  <link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="style.css" />
+
   <link rel="stylesheet" href="style2.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     crossorigin="anonymous" />
@@ -66,9 +67,10 @@
           <span id="userEmail" style="display:none; color: #ebece7;"></span>
           <button id="navbarLoginBtn" class="market-navbar__btn">Login</button>
           <button id="logoutBtn" class="market-navbar__btn" style="display:none;">Logout</button>
-          <button id="installBtn" class="market-navbar__btn install-btn" style="display: none;">
+         <button id="installBtn" class="market-navbar__btn install-btn">
   <i class="fa-solid fa-download"></i> Install App
 </button>
+
 
           <div id="recaptcha-container"></div>
         </div>
@@ -367,6 +369,48 @@
   </script>
   <!-- 1st week banner -->
   <script type="module" src="index.js"></script>
+
+<!-- ✅ Custom Install App Popup -->
+<div id="customInstallPrompt" style="
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #232323;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  max-width: 300px;
+  font-family: 'Segoe UI', sans-serif;
+">
+  <strong style="font-size: 1.1rem;">📲 Install CampusMart App</strong>
+  <p style="margin: 8px 0; font-size: 0.9rem;">
+    Get the app for a faster, cleaner experience!
+  </p>
+  <div style="display: flex; justify-content: flex-start; gap: 10px; margin-top: 10px;">
+    <button id="installNowBtn" style="
+      background: #ffb74d;
+      border: none;
+      color: #232323;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 0.9rem;
+    ">Install</button>
+    
+    <button id="dismissInstallBtn" style="
+      background: none;
+      border: none;
+      color: #bbb;
+      font-size: 0.85rem;
+      cursor: pointer;
+    ">Not now</button>
+  </div>
+</div>
+
 
 </body>
 
