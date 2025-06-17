@@ -16,45 +16,102 @@
       GoogleAuthProvider,
       signInWithPopup
     } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js";
-
-    if ("serviceWorker" in navigator) {
+// ✅ Register service worker first
+if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker.register("service-worker.js")
       .then(reg => console.log("✅ Service Worker registered:", reg))
       .catch(err => console.error("❌ Service Worker failed:", err));
   });
 }
-let deferredPrompt;
-const installBtn = document.getElementById('installBtn');
+document.addEventListener("DOMContentLoaded", () => {
+  const installBtn = document.getElementById("installBtn");
+  const popup = document.getElementById("customInstallPrompt");
+  const installNowBtn = document.getElementById("installNowBtn");
+  const dismissBtn = document.getElementById("dismissInstallBtn");
 
-// ✅ Detect if the app is already installed (PWA mode)
-const isInApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  let deferredPrompt = null;
 
-if (!isInApp) {
-  // Only listen if app is not already installed
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault(); // Prevent default prompt
+  // Detect if app is already installed
+  const isAppInstalled = () =>
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.navigator.standalone === true;
+
+  // If already installed, hide button immediately
+  if (isAppInstalled()) {
+    console.log("✅ App already installed");
+    if (installBtn) installBtn.style.display = "none";
+    return;
+  }
+
+  // Wait for browser's install prompt
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
     deferredPrompt = e;
-    installBtn.style.display = 'inline-block'; // Show only on web
 
-    installBtn.addEventListener('click', () => {
-      installBtn.style.display = 'none';
+    // Show popup once
+    const shownBefore = localStorage.getItem("installPromptShown");
+    if (!shownBefore && popup) {
+      popup.style.display = "block";
+      localStorage.setItem("installPromptShown", "true");
+    }
+
+    // Show install button in navbar
+    if (installBtn) installBtn.style.display = "inline-flex";
+  });
+
+  // Navbar install button
+  if (installBtn) {
+    installBtn.addEventListener("click", () => {
+      if (isAppInstalled()) {
+        alert("✅ You have already installed the CampusMart app.");
+        return;
+      }
+      if (!deferredPrompt) {
+        alert("⚠️ Install prompt is not available. Try refreshing the page.");
+        return;
+      }
+
+      if (popup) popup.style.display = "none";
+      installBtn.style.display = "none";
+
       deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('✅ User accepted install prompt');
-        } else {
-          console.log('❌ User dismissed install prompt');
-        }
+      deferredPrompt.userChoice.then((choice) => {
+        console.log(choice.outcome === 'accepted' ? '✅ Installed' : '❌ Dismissed');
         deferredPrompt = null;
       });
     });
-  });
-} else {
-  // ✅ Hide install button in the installed app
-  installBtn.style.display = 'none';
-}
-console.log("🔍 App Mode:", isInApp ? "PWA / Installed" : "Website");
+  }
+
+  // Popup install now button
+  if (installNowBtn) {
+    installNowBtn.addEventListener("click", () => {
+      if (isAppInstalled()) {
+        alert("✅ You have already installed the CampusMart app.");
+        popup.style.display = "none";
+        return;
+      }
+      if (!deferredPrompt) {
+        alert("⚠️ Install prompt is not available. Try refreshing the page.");
+        popup.style.display = "none";
+        return;
+      }
+
+      popup.style.display = "none";
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choice) => {
+        console.log(choice.outcome === 'accepted' ? '✅ Installed' : '❌ Dismissed');
+        deferredPrompt = null;
+      });
+    });
+  }
+
+  if (dismissBtn) {
+    dismissBtn.addEventListener("click", () => {
+      popup.style.display = "none";
+    });
+  }
+});
 
 
 
