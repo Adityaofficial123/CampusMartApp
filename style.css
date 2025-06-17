@@ -34,14 +34,15 @@ body {
 .install-btn {
   background: linear-gradient(90deg, #007bff, #00c6ff) !important;
   color: white !important;
-     padding: 4px 20px !important;
-  font-size: 1rem !important;
+     /* padding: 0px 20px !important; */height: 35px;
+
+  font-size: 0.9rem !important;
   font-weight: 700 !important;
   border: none !important;
   border-radius: 12px !important;
   display: inline-flex !important;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
   transition: all 0.3s ease;
 }
@@ -97,12 +98,13 @@ body {
   margin-left: 24px;
 }
 .market-navbar__select {
+  width: 50px;
   background: #232323;
   color: #fff;
   border: none;
   border-radius: 6px;
-  padding: 6px 10px;
-  font-size: 1rem;
+  padding: 6px 5px;
+  font-size: 0.8rem;
   outline: none;
 }
 .market-navbar__search-wrapper {
@@ -112,12 +114,12 @@ body {
 }
 .market-navbar__search {
   border: none;
-  border-radius: 6px  0 6px;
+  border-radius: 6px 6px;
   padding: 7px 12px;
   font-size: 1rem;
   background: #fff;
   color: #232323;
-  width: 180px;
+  width: 150px;
   outline: none;
 }
 .market-navbar__search-btn {
@@ -136,9 +138,9 @@ body {
 .market-navbar__links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 28px;
   list-style: none;
-  margin: 0 32px;
+  margin: 0 16px;
 }
 .market-navbar__links li a {
   color: #fff;
@@ -774,11 +776,26 @@ body {
   }
 }
 @media (min-width: 700px) and (max-width: 1400px) {
+
+  .market-navbar__brand {
+  font-size: clamp(1rem, 2vw, 1.5rem); /* auto scales from 1rem to 1.5rem */
+}
+.install-btn {
+  font-size: clamp(0.7rem, 1.8vw, 0.9rem) !important;
+  padding: 4px 14px !important;
+  height: auto !important;
+  border-radius: 10px !important;
+  gap: 6px;
+}
+.install-btn i {
+  font-size: 0.85rem;
+}
+
   .market-navbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 16px;
+    padding: 0 12px;
     background: #181818;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   }
@@ -794,31 +811,31 @@ body {
   .market-navbar__logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
   }
 
   .market-navbar__brand {
-    font-size: 1.5rem;
-    font-weight: 700;
+    font-size: 1.2rem;
+    font-weight: 600;
     color: #fff;
-    margin-left: 8px;
+    margin-left: 4px;
   }
 
   .market-navbar__links {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 10px;
     list-style: none;
     margin: 0;
   }
 
   .market-navbar__links li a {
     color: #fff;
-    font-size: 1rem;
-    font-weight: 600;
-    text-decoration: none;
-    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 4px 8px;
     border-radius: 4px;
+    text-decoration: none;
     transition: color 0.2s, background 0.2s;
   }
 
@@ -831,57 +848,54 @@ body {
     display: flex;
     align-items: center;
     color: #fff;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     cursor: pointer;
-    margin-right: 8px;
+    margin-right: 4px;
   }
 
   .market-navbar__actions {
     display: flex;
+    flex-wrap: nowrap;
     align-items: center;
-    gap: 12px;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  #installBtn,
+  #logoutBtn {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  #userEmail {
+    font-size: 0.8rem;
+    max-width: 180px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
   }
 
   .market-navbar__btn {
-    background: #ffb74d;
-    color: #232323;
-    border: none;
+    font-size: 0.8rem;
+    padding: 5px 10px;
     border-radius: 6px;
-    padding: 6px 12px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
-  }
-
-  .market-navbar__btn:hover {
-    background: #ffa726;
-    color: #fff;
   }
 
   .market-navbar__btn--logout {
-    background: #232323;
-    color: #ffb74d;
-    border: 2px solid #ffb74d;
-    padding: 6px 12px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    border-radius: 6px;
   }
 
-  .market-navbar__btn--logout:hover {
-    background: #ffb74d;
-    color: #232323;
-  }
-
-  /* Hide unnecessary elements */
   .market-navbar__searchbar,
   .market-navbar__select,
   .market-navbar__hamburger {
     display: none !important;
   }
 }
+
 
 /* Remove category-scroll-row mobile styles from larger screens */
 @media (min-width: 768px) {
@@ -1614,7 +1628,7 @@ body {
 }
 
 .market-navbar__cart .cart-label {
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-weight: 600;
   color: #fff;
 }
