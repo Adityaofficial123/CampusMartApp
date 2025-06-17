@@ -1,13 +1,12 @@
 const CACHE_NAME = "campusmart-cache-v1";
 const urlsToCache = [
-  "/",
-  "/index.html",
-  "/style.css",
-  "/index.js",
-  "/manifest.json",
-  "/ekd-logo.png"  // ✅ Correct name
+  "./",               // root relative
+  "./index.html",
+  "./style.css",
+  "./index.js",
+  "./manifest.json",
+  "./ekd-logo.png"
 ];
-
 
 self.addEventListener("install", event => {
   event.waitUntil(
