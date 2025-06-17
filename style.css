@@ -34,7 +34,8 @@ body {
 .install-btn {
   background: linear-gradient(90deg, #007bff, #00c6ff) !important;
   color: white !important;
-     /* padding: 0px 20px !important; */height: 35px;
+     padding: 0px 15px !important;
+     height: 35px;
 
   font-size: 0.9rem !important;
   font-weight: 700 !important;
@@ -42,7 +43,7 @@ body {
   border-radius: 12px !important;
   display: inline-flex !important;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   box-shadow: 0 4px 16px rgba(0, 123, 255, 0.3);
   transition: all 0.3s ease;
 }
@@ -159,14 +160,14 @@ body {
 .market-navbar__actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 .market-navbar__btn {
   background: #ffb74d;
   color: #232323;
   border: none;
   border-radius: 6px;
-  padding: 7px 18px;
+  padding: 7px 22px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
