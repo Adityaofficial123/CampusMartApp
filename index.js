@@ -114,6 +114,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+window.addEventListener('appinstalled', () => {
+  console.log("🎉 App was installed!");
+  alert("✅ CampusMart installed successfully! Add it to your home screen and enjoy.");
+});
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
